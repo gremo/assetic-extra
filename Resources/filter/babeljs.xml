@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="assetic.filter.babeljs.bin">/usr/bin/babel</parameter>
+        <parameter key="assetic.filter.babeljs.retain_lines">null</parameter>
+        <parameter key="assetic.filter.babeljs.presets">null</parameter>
+        <parameter key="assetic.filter.babeljs.plugins">null</parameter>
+        <parameter key="assetic.filter.babeljs.compact">null</parameter>
+        <parameter key="assetic.filter.babeljs.minified">null</parameter>
+        <parameter key="assetic.filter.babeljs.no_babel_rc">null</parameter>
+        <parameter key="assetic.filter.babeljs.auxiliary_comment_before">null</parameter>
+        <parameter key="assetic.filter.babeljs.auxiliary_comment_after">null</parameter>
+        <parameter key="assetic.filter.babeljs.parser_opts">null</parameter>
+        <parameter key="assetic.filter.babeljs.generator_opts">null</parameter>
+    </parameters>
+
+    <services>
+        <service id="assetic.filter.babeljs" class="Gremo\AsseticExtra\Filter\BabeljsFilter">
+            <tag name="assetic.filter" alias="babeljs" />
+            <argument>%assetic.filter.babeljs.bin%</argument>
+            <call method="setRetainLines">
+                <argument>%assetic.filter.babeljs.retain_lines%</argument>
+            </call>
+            <call method="setPresets">
+                <argument>%assetic.filter.babeljs.presets%</argument>
+            </call>
+            <call method="setPlugins">
+                <argument>%assetic.filter.babeljs.plugins%</argument>
+            </call>
+            <call method="setCompact">
+                <argument>%assetic.filter.babeljs.compact%</argument>
+            </call>
+            <call method="setMinified">
+                <argument>%assetic.filter.babeljs.minified%</argument>
+            </call>
+            <call method="setNoBabelRc">
+                <argument>%assetic.filter.babeljs.no_babel_rc%</argument>
+            </call>
+            <call method="setAuxiliaryCommentBefore">
+                <argument>%assetic.filter.babeljs.auxiliary_comment_before%</argument>
+            </call>
+            <call method="setAuxiliaryCommentAfter">
+                <argument>%assetic.filter.babeljs.auxiliary_comment_after%</argument>
+            </call>
+            <call method="setParserOptions">
+                <argument>%assetic.filter.babeljs.parser_opts%</argument>
+            </call>
+            <call method="setGeneratorOptions">
+                <argument>%assetic.filter.babeljs.generator_opts%</argument>
+            </call>
+        </service>
+    </services>
+</container>

@@ -17,6 +17,47 @@ Add the bundle in your `composer.json` file:
 ## Filters
 The following extra filters can be configured and used in your templates.
 
+### `babeljs`
+JavaScript transpiler for node.js (https://babeljs.io/).
+
+**Configurable options**:
+
+- `bin`: path to your `babel` binary (default: `/usr/bin/babel`)
+- `retain_lines`
+- `presets`: a `string` or `array` of presets to use (preset name if installed globally, path otherwise)
+- `plugins`: a `string` or `array` of plugins to use (plugin name if installed globally, path otherwise)
+- `compact`
+- `minified`
+- `no_babel_rc`
+- `auxiliary_comment_before`
+- `auxiliary_comment_after`
+- `parser_opts`
+- `generator_opts`
+
+> **Note**: Babel will look for `.babelrc` file in current asset directory and will travel up the directory tree (see [Lookup behavior](https://babeljs.io/docs/usage/babelrc/#lookup-behavior)), unless you specify the `no_babel_rc`. This means you can put your `.babelrc` file in your project root without cluttering your `config.yml`.
+
+See [options](https://babeljs.io/docs/usage/api/#options) for options description.
+
+**Usage**:
+
+Add the following configuration in the `assetic` section of your `config.yml`:
+
+```yml
+assetic:
+    # ...
+    babeljs:
+        resource: '%kernel.root_dir%/../vendor/gremo/assetic-extra/Resources/filter/babeljs.xml'
+        # options here
+```
+
+Then in your template (Twig example):
+
+```twig
+{% javascripts '../app/Resources/js/*.js' filter='babeljs' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+```
+
 ### `nodesass`
 Parses SASS/SCSS into CSS using the LibSass bindings for node.js. 
 
