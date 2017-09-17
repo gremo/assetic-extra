@@ -34,7 +34,7 @@ JavaScript transpiler for node.js (https://babeljs.io/).
 - `parser_opts`
 - `generator_opts`
 
-> **Note**: Babel will look for `.babelrc` file in current asset directory and will travel up the directory tree (see [Lookup behavior](https://babeljs.io/docs/usage/babelrc/#lookup-behavior)), unless you specify the `no_babel_rc`. This means you can put your `.babelrc` file in your project root without cluttering your `config.yml`.
+> **Note**: Babel will look for `.babelrc` file in current asset directory and will travel up the directory tree (see [Lookup behavior](https://babeljs.io/docs/usage/babelrc/#lookup-behavior)), unless you specify the `no_babel_rc` option. This means you can put your `.babelrc` file in your project root without cluttering your `config.yml`.
 
 See [options](https://babeljs.io/docs/usage/api/#options) for options description.
 
@@ -59,7 +59,7 @@ Then in your template (Twig example):
 ```
 
 ### `nodesass`
-Parses SASS/SCSS into CSS using the LibSass bindings for node.js. 
+Parses SASS/SCSS into CSS using the LibSass bindings for node.js ([sass/node-sass](https://github.com/sass/node-sass)).
 
 **Configurable options**:
 
