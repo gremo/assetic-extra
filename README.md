@@ -58,6 +58,53 @@ Then in your template (Twig example):
 {% endjavascripts %}
 ```
 
+### `browserify`
+Lets you `require('modules')` in the browser (http://browserify.org).
+
+> Credits goes to the original author (https://github.com/kriswallsmith/assetic/pull/669), I changed it a bit and added trasforms support.
+
+**Configurable options**:
+
+- `bin`: path to your `browserify` binary (default: `/usr/bin/browserify`)
+- `transforms` a `string` or `array` of Browserify transform to apply
+
+**Usage**:
+
+Add the following configuration in the `assetic` section of your `config.yml`:
+
+```yml
+assetic:
+    # ...
+    browserify:
+        resource: '%kernel.root_dir%/../vendor/gremo/assetic-extra/Resources/filter/browserify.xml'
+        # options here
+```
+
+Example of `modules/module1.js`:
+
+```js
+// modules/module1.js
+console.log('modules/module1.js');
+```
+
+Example of `main.js`:
+
+```js
+// main.js
+require('./modules/module1.js');
+console.log('main.js');
+```
+
+Then in your template (Twig example):
+
+> **Note**: there is no need to combine assets (`modules/module1.js` in the example) as long as you require your `module`. Browserify filter will take care of combining them in the output file.
+
+```twig
+{% javascripts '../app/Resources/js/main.js' filter='browserify' %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+```
+
 ### `nodesass`
 Parses SASS/SCSS into CSS using the LibSass bindings for node.js ([sass/node-sass](https://github.com/sass/node-sass)).
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="assetic.filter.browserify.bin">/usr/bin/browserify</parameter>
+        <parameter key="assetic.filter.browserify.node">/usr/bin/node</parameter>
+        <parameter key="assetic.filter.browserify.transforms">null</parameter>
+    </parameters>
+
+    <services>
+        <service id="assetic.filter.browserify" class="Gremo\AsseticExtra\Filter\BrowserifyFilter">
+            <tag name="assetic.filter" alias="browserify" />
+            <argument>%assetic.filter.browserify.bin%</argument>
+            <argument>%assetic.filter.browserify.node%</argument>
+            <call method="setTransforms">
+                <argument>%assetic.filter.browserify.transforms%</argument>
+            </call>
+        </service>
+    </services>
+</container>
