@@ -3,6 +3,13 @@
 
 A collection of extra [assetic](https://github.com/kriswallsmith/assetic) resources to use with Symfony [AsseticBundle](https://github.com/symfony/assetic-bundle).
 
+## Table of Contents
+- [Filters](#filters)
+  - [Babel](#babeljs)
+  - [Browserify](#browserify)
+  - [Node-sass](#nodesass)
+- [Recipies](#recipies)
+
 ## Installation
 Add the bundle in your `composer.json` file:
 
@@ -140,3 +147,19 @@ Then in your template (Twig example):
     <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
 ```
+
+## Recipies
+### ES6 modules with Browserify
+Write ES6 JavaScript modules using import/export style and make it work [in the browser](http://caniuse.com/#feat=es6-module).
+
+**Problem**: Browserify filter transform your source file and not your transpiled one, so it would fail at the first `import` or `export` keyword.
+**Solution**: only use the `browserify` filter with [babelify](https://github.com/babel/babelify) transform filter configuration:
+
+```yml
+browserify:
+    resource: '%kernel.root_dir%/../vendor/gremo/assetic-extra/Resources/filter/browserify.xml'
+    transforms:
+        - '[ babelify --presets env ]'
+```
+
+> **Note** if Browserify cannot find the babelify module, try installing it locally) in your project folder and use the absolute path.
