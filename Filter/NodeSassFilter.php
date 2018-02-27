@@ -99,13 +99,6 @@ class NodeSassFilter extends BaseProcessFilter
      */
     public function filterLoad(AssetInterface $asset)
     {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function filterDump(AssetInterface $asset)
-    {
         $pb = $this->createProcessBuilder(array($this->nodeSassBin));
 
         if ($this->outputStyle) {
@@ -149,5 +142,12 @@ class NodeSassFilter extends BaseProcessFilter
         }
 
         $asset->setContent($proc->getOutput());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function filterDump(AssetInterface $asset)
+    {
     }
 }
