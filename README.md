@@ -11,14 +11,10 @@ A collection of extra [assetic](https://github.com/kriswallsmith/assetic) resour
 - [Recipies](#recipies)
 
 ## Installation
-Add the bundle in your `composer.json` file:
+Install this library using Composer:
 
-```json
-{
-    "require": {
-        "gremo/assetic-extra": "^1.0"
-    }
-}
+```bash
+composer require gremo/assetic-extra
 ```
 
 ## Filters
