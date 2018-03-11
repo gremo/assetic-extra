@@ -38,14 +38,6 @@ class NodeSassFilter extends BaseProcessFilter
     }
 
     /**
-     * @param string $path
-     */
-    public function addIncludePath($path)
-    {
-        $this->importPaths[] = $path;
-    }
-
-    /**
      * @param string $outputStyle
      */
     public function setOutputStyle($outputStyle)
@@ -124,8 +116,9 @@ class NodeSassFilter extends BaseProcessFilter
             $pb->add('--source-comments');
         }
 
-        array_unshift($this->importPaths, $asset->getSourceDirectory());
-        foreach ($this->importPaths as $path) {
+        $importPaths = $this->importPaths;
+        array_unshift($importPaths, $asset->getSourceDirectory());
+        foreach ($importPaths as $path) {
             if ($path = realpath($path)) {
                 $pb->add('--include-path')->add($path);
             }
