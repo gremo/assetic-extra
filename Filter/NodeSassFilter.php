@@ -93,7 +93,6 @@ class NodeSassFilter extends BaseProcessFilter
         $this->sourceComments = $sourceComments;
     }
 
-
     /**
      * {@inheritdoc}
      */
