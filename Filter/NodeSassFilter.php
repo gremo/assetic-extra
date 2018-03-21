@@ -25,6 +25,8 @@ class NodeSassFilter extends BaseProcessFilter
     private $linefeed;
     private $precision;
     private $sourceComments;
+    private $sourceMapLocation;
+    private $sourceMapPublicDir;
 
     public function __construct($nodeSassBin = '/usr/bin/node-sass')
     {
@@ -86,6 +88,22 @@ class NodeSassFilter extends BaseProcessFilter
     }
 
     /**
+     * @param string $sourceMapLocation
+     */
+    public function setSourceMapLocation($sourceMapLocation)
+    {
+        $this->sourceMapLocation = rtrim($sourceMapLocation, '\\/');
+    }
+
+    /**
+     * @param string $sourceMapPublicDir
+     */
+    public function setSourceMapPublicDir($sourceMapPublicDir)
+    {
+        $this->sourceMapPublicDir = rtrim($sourceMapPublicDir, '\\/');
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function filterLoad(AssetInterface $asset)
@@ -116,6 +134,11 @@ class NodeSassFilter extends BaseProcessFilter
             $pb->add('--source-comments');
         }
 
+        if ($this->sourceMapLocation) {
+            $mapFileName = $this->createMapFileName($asset->getSourcePath());
+            $pb->add('--source-map')->add($mapFileName);
+        }
+
         $importPaths = $this->importPaths;
         array_unshift($importPaths, $asset->getSourceDirectory());
         foreach ($importPaths as $path) {
@@ -133,7 +156,13 @@ class NodeSassFilter extends BaseProcessFilter
             throw FilterException::fromProcess($proc)->setInput($asset->getContent());
         }
 
-        $asset->setContent($proc->getOutput());
+        $output = $proc->getOutput();
+
+        if ($this->sourceMapLocation) {
+            $output = $this->extractAndSaveSourceMap($output, $mapFileName);
+        }
+
+        $asset->setContent($output);
     }
 
     /**
@@ -141,5 +170,42 @@ class NodeSassFilter extends BaseProcessFilter
      */
     public function filterDump(AssetInterface $asset)
     {
+    }
+
+    private function createMapFileName($sourcePath)
+    {
+        $pathInfo = pathinfo($sourcePath);
+
+        // Create a unique map name for the asset
+        return sprintf(
+            '%s_%s.%s.map',
+            $pathInfo['filename'],
+            crc32($sourcePath),
+            $pathInfo['extension']
+        );
+    }
+
+    private function extractAndSaveSourceMap($output, $mapFileName)
+    {
+        // Extract mapping from node-sass output
+        preg_match_all(
+            "/(?<css>.*)(?<reference>\/\*\# sourceMappingURL=.*\*\/)(?<map>.*)/ms",
+            $output,
+            $matches
+        );
+        if (!isset($matches['map'])) {
+            return $output;
+        }
+
+        // Write source map to sourceMapLocation
+        $mappingFilePath = realpath($this->sourceMapLocation).DIRECTORY_SEPARATOR.$mapFileName;
+        file_put_contents($mappingFilePath, $matches['map'][0]);
+
+        // Rewrite sourceMappingURL when sourceMapPublicDir is provided
+        $sourceMappingURL = $this->sourceMapPublicDir
+            ? '/*# sourceMappingURL='.$this->sourceMapPublicDir.'/'.$mapFileName.'*/'
+            : $matches['reference'][0];
+
+        return $matches['css'][0].$sourceMappingURL;
     }
 }

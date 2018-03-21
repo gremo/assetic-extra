@@ -12,6 +12,8 @@
         <parameter key="assetic.filter.nodesass.output_style">null</parameter>
         <parameter key="assetic.filter.nodesass.precision">null</parameter>
         <parameter key="assetic.filter.nodesass.source_comments">null</parameter>
+        <parameter key="assetic.filter.nodesass.source_map_location">null</parameter>
+        <parameter key="assetic.filter.nodesass.source_map_public_dir">null</parameter>
     </parameters>
 
     <services>
@@ -38,6 +40,12 @@
             </call>
             <call method="setSourceComments">
                 <argument>%assetic.filter.nodesass.source_comments%</argument>
+            </call>
+            <call method="setSourceMapLocation">
+                <argument>%assetic.filter.nodesass.source_map_location%</argument>
+            </call>
+            <call method="setSourceMapPublicDir">
+                <argument>%assetic.filter.nodesass.source_map_public_dir%</argument>
             </call>
         </service>
     </services>
