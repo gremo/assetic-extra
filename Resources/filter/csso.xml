@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="assetic.filter.csso.bin">/usr/bin/csso</parameter>
+        <parameter key="assetic.filter.csso.comments">null</parameter>
+        <parameter key="assetic.filter.csso.force_media_merge">null</parameter>
+        <parameter key="assetic.filter.csso.restructure_off">null</parameter>
+        <parameter key="assetic.filter.csso.usage">null</parameter>
+    </parameters>
+
+    <services>
+        <service id="assetic.filter.csso" class="Gremo\AsseticExtra\Filter\CssoFilter">
+            <tag name="assetic.filter" alias="csso" />
+            <argument>%assetic.filter.csso.bin%</argument>
+            <call method="setComments">
+                <argument>%assetic.filter.csso.comments%</argument>
+            </call>
+            <call method="setForceMediaMerge">
+                <argument>%assetic.filter.csso.force_media_merge%</argument>
+            </call>
+            <call method="setRestructureOff">
+                <argument>%assetic.filter.csso.restructure_off%</argument>
+            </call>
+            <call method="setUsage">
+                <argument>%assetic.filter.csso.usage%</argument>
+            </call>
+        </service>
+    </services>
+</container>

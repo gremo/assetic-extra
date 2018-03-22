@@ -7,6 +7,7 @@ A collection of extra [assetic](https://github.com/kriswallsmith/assetic) resour
 - [Filters](#filters)
   - [Babel](#babeljs)
   - [Browserify](#browserify)
+  - [CSSO](#csso)
   - [Node-sass](#nodesass)
 - [Recipies](#recipies)
 
@@ -106,6 +107,39 @@ Then in your template (Twig example):
 {% javascripts '../app/Resources/js/main.js' filter='browserify' %}
     <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
+```
+
+### `csso`
+CSSO (CSS Optimizer) is a CSS minifier ([css/csso](https://github.com/css/csso)).
+
+**Configurable options**:
+
+- `bin`: path to your `csso` binary (default: `/usr/bin/csso`)
+- `comments`
+- `force_media_merge`
+- `restructure_off`
+- `usage`
+
+See [css/csso-cli](https://github.com/css/csso-cli) for options description.
+
+**Usage**:
+
+Add the following configuration in the `assetic` section of your `config.yml`:
+
+```yml
+assetic:
+    # ...
+    csso:
+        resource: '%kernel.root_dir%/../vendor/gremo/assetic-extra/Resources/filter/csso.xml'
+        # options here
+```
+
+Then in your template (Twig example):
+
+```twig
+{% stylesheets '../app/Resources/css/*' filter='csso' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
 ```
 
 ### `nodesass`
