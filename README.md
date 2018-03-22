@@ -121,6 +121,8 @@ Parses SASS/SCSS into CSS using the LibSass bindings for node.js ([sass/node-sas
 - `output_style`
 - `precision`
 - `source_comments`
+- `source_map_location`
+- `source_map_public_dir`
 
 See [sass/node-sass](https://github.com/sass/node-sass#options) for options description.
 
@@ -142,6 +144,19 @@ Then in your template (Twig example):
 {% stylesheets '../app/Resources/scss/style.scss' filter='nodesass' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
+```
+
+**Generating source maps**
+
+The filter is able to generate source map files along with the generated assets. Source maps help you locate the origin of CSS rules is the SCSS files while debugging.
+
+In order to generate the source maps, you'll need to specify a public accessible directory where the `.map` files can be placed (`source_map_location`) together with the base path (`source_map_public_dir`) which will be used when generating the urls to the mapping files:
+
+```yml
+nodesass:
+    # ...
+    source_map_location: '%kernel.root_dir%/../web/assets/maps'
+    source_map_public_dir: '/assets/maps'
 ```
 
 ## Recipies
