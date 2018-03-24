@@ -90,6 +90,8 @@ assetic:
 {% endjavascripts %}
 ```
 
+> **Note**: the `assetic:watch` command will regenerate the assets only if you change the "main" script. Modules changes will not be monitored as they are not included in the `javascripts` tag. 
+
 Example of `main.js`:
 
 ```js
