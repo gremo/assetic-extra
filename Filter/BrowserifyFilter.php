@@ -35,18 +35,18 @@ class BrowserifyFilter extends BaseNodeFilter
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function filterLoad(AssetInterface $asset)
-    {
-    }
-
-    /**
      * @param string|array $transforms
      */
     public function setTransforms($transforms)
     {
         $this->transforms = $transforms;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function filterLoad(AssetInterface $asset)
+    {
     }
 
     /**
