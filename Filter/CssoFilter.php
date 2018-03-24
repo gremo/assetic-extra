@@ -14,6 +14,7 @@ namespace Gremo\AsseticExtra\Filter;
 use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
 use Assetic\Filter\BaseProcessFilter;
+use Assetic\Util\FilesystemUtils;
 
 /**
  * Filters assets through CSSO.
@@ -79,7 +80,7 @@ class CssoFilter extends BaseProcessFilter
     {
         $pb = $this->createProcessBuilder(array($this->cssoBin));
 
-        $input = tempnam(sys_get_temp_dir(), 'input');
+        $input = FilesystemUtils::createTemporaryFile('csso_in');
         file_put_contents($input, $asset->getContent());
 
         $pb->add($input);
