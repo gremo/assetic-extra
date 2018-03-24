@@ -15,6 +15,11 @@ use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
 use Assetic\Filter\BaseProcessFilter;
 
+/**
+ * Runs assets through Babel.
+ *
+ * @link https://babeljs.io
+ */
 class BabeljsFilter extends BaseProcessFilter
 {
     private $babelBin;
@@ -36,7 +41,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $retainLines
+     * @param bool $retainLines
      */
     public function setRetainLines($retainLines)
     {
@@ -44,7 +49,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $presets
+     * @param string|array $presets
      */
     public function setPresets($presets)
     {
@@ -52,7 +57,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $plugins
+     * @param string|array $plugins
      */
     public function setPlugins($plugins)
     {
@@ -60,7 +65,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $noComments
+     * @param bool $noComments
      */
     public function setNoComments($noComments)
     {
@@ -68,7 +73,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $compact
+     * @param bool|string $compact
      */
     public function setCompact($compact)
     {
@@ -76,7 +81,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $minified
+     * @param bool $minified
      */
     public function setMinified($minified)
     {
@@ -84,7 +89,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $noBabelRc
+     * @param bool $noBabelRc
      */
     public function setNoBabelRc($noBabelRc)
     {
@@ -92,7 +97,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $auxiliaryCommentBefore
+     * @param string $auxiliaryCommentBefore
      */
     public function setAuxiliaryCommentBefore($auxiliaryCommentBefore)
     {
@@ -100,7 +105,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $auxiliaryCommentAfter
+     * @param string $auxiliaryCommentAfter
      */
     public function setAuxiliaryCommentAfter($auxiliaryCommentAfter)
     {
@@ -108,7 +113,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $parserOptions
+     * @param string $parserOptions
      */
     public function setParserOptions($parserOptions)
     {
@@ -116,7 +121,7 @@ class BabeljsFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $generatorOptions
+     * @param string $generatorOptions
      */
     public function setGeneratorOptions($generatorOptions)
     {

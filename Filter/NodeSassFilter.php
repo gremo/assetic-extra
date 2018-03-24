@@ -15,6 +15,11 @@ use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
 use Assetic\Filter\BaseProcessFilter;
 
+/**
+ * Filters assets through Node-sass.
+ *
+ * @link https://github.com/sass/node-sass
+ */
 class NodeSassFilter extends BaseProcessFilter
 {
     private $nodeSassBin;
@@ -34,6 +39,9 @@ class NodeSassFilter extends BaseProcessFilter
         $this->importPaths = array();
     }
 
+    /**
+     * @param array $importPaths
+     */
     public function setImportPaths(array $importPaths)
     {
         $this->importPaths = $importPaths;
@@ -80,7 +88,7 @@ class NodeSassFilter extends BaseProcessFilter
     }
 
     /**
-     * @param string $sourceComments
+     * @param bool $sourceComments
      */
     public function setSourceComments($sourceComments)
     {

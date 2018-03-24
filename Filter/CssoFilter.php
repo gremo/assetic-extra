@@ -15,6 +15,11 @@ use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
 use Assetic\Filter\BaseProcessFilter;
 
+/**
+ * Filters assets through CSSO.
+ *
+ * @link https://github.com/css/csso
+ */
 class CssoFilter extends BaseProcessFilter
 {
     private $cssoBin;
@@ -37,7 +42,7 @@ class CssoFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $forceMediaMerge
+     * @param bool $forceMediaMerge
      */
     public function setForceMediaMerge($forceMediaMerge)
     {
@@ -45,7 +50,7 @@ class CssoFilter extends BaseProcessFilter
     }
 
     /**
-     * @param mixed $restructureOff
+     * @param bool $restructureOff
      */
     public function setRestructureOff($restructureOff)
     {

@@ -16,7 +16,9 @@ use Assetic\Exception\FilterException;
 use Assetic\Filter\BaseNodeFilter;
 
 /**
- * Browserify filter.
+ * Runs assets through Browserify.
+ *
+ * @link http://browserify.org
  */
 class BrowserifyFilter extends BaseNodeFilter
 {
