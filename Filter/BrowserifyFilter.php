@@ -60,7 +60,7 @@ class BrowserifyFilter extends BaseNodeFilter
                 : array($this->browserifyBin)
         );
 
-        $input = realpath($asset->getSourceRoot() . DIRECTORY_SEPARATOR . $asset->getSourcePath());
+        $input = realpath($asset->getSourceRoot().DIRECTORY_SEPARATOR.$asset->getSourcePath());
         $output = tempnam(sys_get_temp_dir(), 'output');
 
         $pb->add($input)->add('-o')->add($output);
