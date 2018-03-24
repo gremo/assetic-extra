@@ -210,7 +210,7 @@ Write ES6 JavaScript modules using import/export style and make it work [in the 
 **Problem**: Browserify filter transform your source file and not your transpiled one, so it would fail at the first `import` or `export` keyword.
 **Solution**: only use the `browserify` filter with [babelify](https://github.com/babel/babelify) transform filter configuration:
 
-> **Note** if Browserify cannot find the babelify module, try installing it locally) in your project folder and use the absolute path.
+> **Note** if Browserify cannot find the babelify module, try installing it locally in your project folder and use the absolute path.
 
 ```yml
 browserify:
