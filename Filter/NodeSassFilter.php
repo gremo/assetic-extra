@@ -14,6 +14,7 @@ namespace Gremo\AsseticExtra\Filter;
 use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
 use Assetic\Filter\BaseProcessFilter;
+use Assetic\Util\FilesystemUtils;
 
 /**
  * Filters assets through Node-sass.
@@ -155,10 +156,14 @@ class NodeSassFilter extends BaseProcessFilter
             }
         }
 
-        $pb->add(realpath($asset->getSourceDirectory()).DIRECTORY_SEPARATOR.basename($asset->getSourcePath()));
+        $input = FilesystemUtils::createTemporaryFile('nodesass_in');
+        file_put_contents($input, $asset->getContent());
+
+        $pb->add($input);
 
         $proc = $pb->getProcess();
         $code = $proc->run();
+        unlink($input);
 
         if (0 !== $code) {
             throw FilterException::fromProcess($proc)->setInput($asset->getContent());

@@ -14,6 +14,7 @@ namespace Gremo\AsseticExtra\Filter;
 use Assetic\Asset\AssetInterface;
 use Assetic\Exception\FilterException;
 use Assetic\Filter\BaseProcessFilter;
+use Assetic\Util\FilesystemUtils;
 
 /**
  * Runs assets through Babel.
@@ -179,10 +180,14 @@ class BabeljsFilter extends BaseProcessFilter
             $pb->add('--generator-opts')->add($this->generatorOptions);
         }
 
-        $pb->add(realpath($asset->getSourceDirectory()).DIRECTORY_SEPARATOR.basename($asset->getSourcePath()));
+        $input = FilesystemUtils::createTemporaryFile('babeljs_in');
+        file_put_contents($input, $asset->getContent());
+
+        $pb->add($input);
 
         $proc = $pb->getProcess();
         $code = $proc->run();
+        unlink($input);
 
         if (0 !== $code) {
             throw FilterException::fromProcess($proc)->setInput($asset->getContent());
