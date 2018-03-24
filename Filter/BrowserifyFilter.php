@@ -26,7 +26,7 @@ class BrowserifyFilter extends BaseNodeFilter
     private $nodeBin;
     private $transforms;
 
-    public function __construct($browserifyBin = '/usr/bin/browserify', $nodeBin = '/usr/bin/node')
+    public function __construct($browserifyBin = '/usr/bin/browserify', $nodeBin = null)
     {
         $this->browserifyBin = $browserifyBin;
         $this->nodeBin = $nodeBin;

@@ -5,7 +5,7 @@
 
     <parameters>
         <parameter key="assetic.filter.browserify.bin">/usr/bin/browserify</parameter>
-        <parameter key="assetic.filter.browserify.node">/usr/bin/node</parameter>
+        <parameter key="assetic.filter.browserify.node">%assetic.node.bin%</parameter>
         <parameter key="assetic.filter.browserify.transforms">null</parameter>
     </parameters>
 
