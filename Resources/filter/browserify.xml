@@ -6,6 +6,7 @@
     <parameters>
         <parameter key="assetic.filter.browserify.bin">/usr/bin/browserify</parameter>
         <parameter key="assetic.filter.browserify.node">%assetic.node.bin%</parameter>
+        <parameter key="assetic.filter.browserify.node_paths">%assetic.node.paths%</parameter>
         <parameter key="assetic.filter.browserify.transforms">null</parameter>
     </parameters>
 
@@ -14,6 +15,9 @@
             <tag name="assetic.filter" alias="browserify" />
             <argument>%assetic.filter.browserify.bin%</argument>
             <argument>%assetic.filter.browserify.node%</argument>
+            <call method="setNodePaths">
+                <argument>%assetic.filter.browserify.node_paths%</argument>
+            </call>
             <call method="setTransforms">
                 <argument>%assetic.filter.browserify.transforms%</argument>
             </call>

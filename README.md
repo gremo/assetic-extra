@@ -79,6 +79,7 @@ assetic:
 
 - `bin`: path to your `browserify` binary (default: `/usr/bin/browserify`)
 - `node`: path to your `node` binary (default: `%assetic.node.bin%`, set to `null` to use `browserify` binary instead)
+- `node_paths`: paths to add to Node.js environment when using `node` option (default: `%assetic.node.paths%`)
 - `transforms` a `string` or `array` of Browserify transform to apply
 
 **Usage**
