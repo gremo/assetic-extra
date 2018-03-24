@@ -133,13 +133,6 @@ class BabeljsFilter extends BaseProcessFilter
      */
     public function filterLoad(AssetInterface $asset)
     {
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function filterDump(AssetInterface $asset)
-    {
         $pb = $this->createProcessBuilder(array($this->babelBin));
 
         if ($this->retainLines) {
@@ -196,5 +189,12 @@ class BabeljsFilter extends BaseProcessFilter
         }
 
         $asset->setContent($proc->getOutput());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function filterDump(AssetInterface $asset)
+    {
     }
 }
