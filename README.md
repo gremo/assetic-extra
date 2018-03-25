@@ -8,6 +8,7 @@ A collection of extra [assetic](https://github.com/kriswallsmith/assetic) resour
   - [Babel](#babel)
   - [Browserify](#browserify)
   - [CSSO](#csso)
+  - [PostCSS](#postcss)
   - [Node-sass](#node-sass)
 - [Recipes](#recipes)
 
@@ -145,6 +146,37 @@ csso:
     # ...
     comments: none
     restructure_off: true
+```
+
+### PostCSS
+A tool for transforming CSS with JavaScript (http://postcss.org).
+
+**Configuration**
+
+```yml
+assetic:
+    # ...
+    postcss:
+        resource: '%kernel.root_dir%/../vendor/gremo/assetic-extra/Resources/filter/postcss.xml'
+        # options here
+```
+
+**Options ([reference](https://github.com/postcss/postcss-cli))**
+
+- `bin`: path to your `postcss` binary (default: `/usr/bin/postcss`)
+- `no_map`: disable the default inline sourcemaps
+- `use`: list of postcss plugins to use
+- `parser`: custom postcss parser
+- `stringifier`: custom postcss stringifier
+- `syntax`: custom postcss syntax
+- `config`: set a custom path to look for a config file
+
+**Usage**
+
+```twig
+{% stylesheets '../app/Resources/css/*' filter='postcss' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
 ```
 
 ### Node-sass

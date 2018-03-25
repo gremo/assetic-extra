@@ -2,7 +2,7 @@
     "name": "gremo/assetic-extra",
     "type": "library",
     "description": "A collection of extra assetic resources to use with Symfony AsseticBundle.",
-    "keywords": ["assetic", "babel", "babeljs", "browserify", "csso", "sass", "scss"],
+    "keywords": ["assetic", "babel", "babeljs", "browserify", "csso", "postcss", "sass", "scss"],
     "license": "MIT",
     "authors": [
         {

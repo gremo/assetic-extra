@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="assetic.filter.postcss.bin">/usr/bin/postcss</parameter>
+        <parameter key="assetic.filter.postcss.no_map">null</parameter>
+        <parameter key="assetic.filter.postcss.use">null</parameter>
+        <parameter key="assetic.filter.postcss.parser">null</parameter>
+        <parameter key="assetic.filter.postcss.stringifier">null</parameter>
+        <parameter key="assetic.filter.postcss.syntax">null</parameter>
+        <parameter key="assetic.filter.postcss.config">null</parameter>
+    </parameters>
+
+    <services>
+        <service id="assetic.filter.postcss" class="Gremo\AsseticExtra\Filter\PostCssFilter">
+            <tag name="assetic.filter" alias="postcss" />
+            <argument>%assetic.filter.postcss.bin%</argument>
+            <call method="setNoMap">
+                <argument>%assetic.filter.postcss.no_map%</argument>
+            </call>
+            <call method="setUse">
+                <argument>%assetic.filter.postcss.use%</argument>
+            </call>
+            <call method="setParser">
+                <argument>%assetic.filter.postcss.parser%</argument>
+            </call>
+            <call method="setStringifier">
+                <argument>%assetic.filter.postcss.stringifier%</argument>
+            </call>
+            <call method="setSyntax">
+                <argument>%assetic.filter.postcss.syntax%</argument>
+            </call>
+            <call method="setConfig">
+                <argument>%assetic.filter.postcss.config%</argument>
+            </call>
+        </service>
+    </services>
+</container>
